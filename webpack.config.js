@@ -51,7 +51,31 @@ const config = {
       {
         test: /\.css/,
         include: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          // Insert styles at top
+          // https://webpack.js.org/loaders/style-loader/#insert-styles-at-top
+          {
+            loader: 'style-loader',
+            options: {
+              insert: function insertAtTop(element) {
+                var parent = document.querySelector('head');
+                var lastInsertedElement =
+                  window._lastElementInsertedByStyleLoader;
+
+                if (!lastInsertedElement) {
+                  parent.insertBefore(element, parent.firstChild);
+                } else if (lastInsertedElement.nextSibling) {
+                  parent.insertBefore(element, lastInsertedElement.nextSibling);
+                } else {
+                  parent.appendChild(element);
+                }
+
+                window._lastElementInsertedByStyleLoader = element;
+              },
+            },
+          },
+          'css-loader'
+        ],
       }]}};
 
 module.exports = config;
