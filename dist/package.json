@@ -30,10 +30,10 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "react": ">=15 <=17",
-    "firebase": "^8.2.4"
+    "firebase": "^9.0.0"
   },
   "dependencies": {
-    "firebaseui": "mottx/firebaseui-web"
+    "firebaseui": "github:mottx/firebaseui-web#v0.600.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

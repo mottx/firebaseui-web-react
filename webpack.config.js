@@ -30,6 +30,7 @@ const config = {
   externals: {
     'react': 'react',
     'firebaseui': 'firebaseui',
+    'firebase/auth': 'firebase/auth'
   },
   devtool: 'source-map',
   resolve: {

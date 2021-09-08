@@ -16,6 +16,7 @@
 // @flow
 
 import React from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // Global ID for the element.
 const ELEMENT_ID = 'firebaseui_container';
@@ -66,7 +67,7 @@ export default class FirebaseAuth extends React.Component {
 
       // We track the auth state to reset firebaseUi if the user signs out.
       this.userSignedIn = false;
-      this.unregisterAuthObserver = this.firebaseAuth.onAuthStateChanged((user) => {
+      this.unregisterAuthObserver = onAuthStateChanged(this.firebaseAuth, (user) => {
         if (!user && this.userSignedIn) {
           this.firebaseUiWidget.reset();
         }
